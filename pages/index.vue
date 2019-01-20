@@ -25,6 +25,9 @@ export default {
     eMenu,
     life,
     artistic
+  },
+  created () {
+    console.log(this.$route.params)
   }
 }
 </script>

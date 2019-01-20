@@ -54,9 +54,18 @@ router.get('/province', async (ctx) => {
 router.get('/province/:id', async (ctx) => {
   const city = await City.findOne({id: ctx.params.id})
 
+  let arr = []
+
+  city.value.forEach(item => {
+    arr.push({
+      name: item.name === '市辖区' || item.name === '省直辖县级行政区划' ? item.province : item.name,
+      id: item.id
+    })
+  })
+
   ctx.body = {
     code: 0,
-    city: city.value
+    city: arr
   }
 })
 
